@@ -1,6 +1,25 @@
 from itertools import repeat, islice
-from random import randrange
+from random import randrange, choice
 from copy import deepcopy
+
+
+def colorize(g):
+    g = deepcopy(g)
+
+    for r in g['rows']:
+        for c in r:
+            c['color'] = choice((
+                'white',
+                'white',
+                'white',
+                'white'
+                'green',
+                'yellow',
+                'red',
+                'blue'
+            ))
+
+    return g
 
 
 def mondrianize(g):
@@ -183,4 +202,5 @@ def html_td(c):
 
 
 if __name__ == '__main__':
-    print(html(mondrianize(grid(32, 32))))
+    print(html(colorize(mondrianize(grid(4, 4))))
+)
