@@ -80,6 +80,17 @@ class TestSpanTopLeft(unittest.TestCase):
         self.assertEqual(g['rows'][0], [spanning_cell(2, 2)])
         self.assertEqual(g['rows'][1], [])
 
+    def test_degenerate_case_of_an_empty_grid(self):
+        g = grid(0, 0)
+        span_top_left(g, 222, 222)
+        self.assertEqual(g['rows'], [])
+
+    def test_degenerate_case_of_1_by_1_grid(self):
+        g = grid(1, 1)
+        span_top_left(g, 222, 222)
+        self.assertEqual(g['rows'], [[cell()]])
+
+
 
 if __name__ == '__main__':
     unittest.main()

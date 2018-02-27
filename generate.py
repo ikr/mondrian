@@ -2,6 +2,9 @@ from itertools import repeat, islice
 
 
 def span_top_left(g, rowspan, colspan):
+    if len(g['rows']) <= 0:
+        return g
+
     row_length = len(g['rows'][0])
     to_drop_horz = min(row_length - 1, colspan - 1)
     g['rows'][0] = g['rows'][0][:row_length - to_drop_horz]
