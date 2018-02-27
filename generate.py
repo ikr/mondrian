@@ -1,5 +1,6 @@
 from itertools import repeat, islice
 from random import randrange
+from copy import deepcopy
 
 def mondrianize(g):
     height = len(g['rows'])
@@ -47,6 +48,8 @@ def split_vertically(g, rowsOnTop):
 
 
 def span_top_left(g, rowspan, colspan):
+    g = deepcopy(g)
+
     if len(g['rows']) <= 0:
         return g
 
