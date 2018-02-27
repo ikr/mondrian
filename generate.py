@@ -28,13 +28,13 @@ def split_horizontally(g, columnsOnLeft):
     g2 = {'rows': []}
 
     for r in g['rows']:
-        g1['rows'].append(r[:columnsOnLeft])
-        g2['rows'].append(r[columnsOnLeft:])
+        if r[:columnsOnLeft]:
+            g1['rows'].append(r[:columnsOnLeft])
 
-    return (
-        {'rows': list(filter(bool, g1['rows']))},
-        {'rows': list(filter(bool, g2['rows']))}
-    )
+        if r[columnsOnLeft:]:
+            g2['rows'].append(r[columnsOnLeft:])
+
+    return (g1, g2)
 
 
 def split_vertically(g, rowsOnTop):
