@@ -16,12 +16,33 @@ def mondrianize(g):
         return gPrime
 
     coinToss = randrange(0, 2)
-    splitVertically = (
+    splitVerticallyFirst = (
         (rowspan < height and colspan < width and coinToss == 0) or
         (colspan == width)
     )
 
-    return gPrime
+    result = {'rows': [gPrime['rows'][0][0]]}
+
+    if splitVerticallyFirst:
+        gTop, gBottom = split_vertically(g, rowspan)
+        _, gRight = split_horizontally(gTop, colspan)
+
+        if gRight['rows']:
+            result = join_horizontally(result, mondrianize(gRight))
+
+        if gBottom['rows']:
+            result = join_vertically(result, mondrianize(gBottom))
+    else:
+        gLeft, gRight = split_horizontally(g, colspan)
+        _, gBottom = split_vertically(gLeft, rowspan)
+
+        if gBottom['rows']:
+            result = join_vertically(result, mondrianize(gBottom))
+
+        if gRight['rows']:
+            result = join_horizontally(result, mondrianize(gRight))
+
+    return result
 
 
 def join_horizontally(leftG, rightG):
