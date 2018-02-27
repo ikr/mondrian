@@ -26,11 +26,6 @@ class TestRow(unittest.TestCase):
 
 
 class TestGrid(unittest.TestCase):
-    def test_init_saves_the_passed_width_and_height(self):
-        g = grid(11, 10)
-        self.assertEqual(g['width'], 10)
-        self.assertEqual(g['height'], 11)
-
     def test_init_creates_height_of_rows_with_width_of_cells(self):
         g = grid(2, 3)
 

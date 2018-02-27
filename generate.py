@@ -23,11 +23,7 @@ def span_top_left(g, rowspan, colspan):
 
 
 def grid(height, width):
-    return {
-        'height': height,
-        'width': width,
-        'rows': list(map(row, repeat(width, height)))
-    }
+    return {'rows': list(map(row, repeat(width, height)))}
 
 
 def row(width):
