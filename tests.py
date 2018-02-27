@@ -6,7 +6,8 @@ from generate import (
     row,
     grid,
     span_top_left,
-    split_vertically
+    split_vertically,
+    split_horizontally
 )
 
 
@@ -121,6 +122,13 @@ class TestSplitVertically(unittest.TestCase):
         self.assertEqual(g1['rows'], [[cell(), cell()], [cell(), cell()]])
         self.assertEqual(g2['rows'], [])
 
+
+class TestSplitHorizontally(unittest.TestCase):
+    def test_split_after_one_column(self):
+        g = grid(3, 3)
+        g1, g2 = split_horizontally(g, 1)
+        self.assertEqual(g1['rows'], [[cell()], [cell()], [cell()]])
+        self.assertEqual(g2['rows'], [[cell(), cell()], [cell(), cell()], [cell(), cell()]])
 
 
 if __name__ == '__main__':

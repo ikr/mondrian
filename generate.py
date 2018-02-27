@@ -1,6 +1,17 @@
 from itertools import repeat, islice
 
 
+def split_horizontally(g, columnsOnLeft):
+    g1 = {'rows': []}
+    g2 = {'rows': []}
+
+    for r in g['rows']:
+        g1['rows'].append(r[:columnsOnLeft])
+        g2['rows'].append(r[columnsOnLeft:])
+
+    return (g1, g2)
+
+
 def split_vertically(g, rowsOnTop):
     return (
         {'rows': g['rows'][:rowsOnTop]},
