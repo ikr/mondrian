@@ -132,6 +132,12 @@ class TestSplitHorizontally(unittest.TestCase):
         self.assertEqual(g1['rows'], [[cell()], [cell()], [cell()]])
         self.assertEqual(g2['rows'], [[cell(), cell()], [cell(), cell()], [cell(), cell()]])
 
+    def test_split_on_the_left(self):
+        g = grid(2, 2)
+        g1, g2 = split_horizontally(g, 2)
+        self.assertEqual(g1['rows'], [[cell(), cell()], [cell(), cell()]])
+        self.assertEqual(g2['rows'], [])
+
 
 class TestJoinVertically(unittest.TestCase):
     def test_jouns_a_split_back(self):

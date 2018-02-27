@@ -1,4 +1,14 @@
 from itertools import repeat, islice
+from random import randrange
+
+def mondrianize(g):
+    height = len(g['rows'])
+    width = len(g['rows'][0])
+
+    rowspan = randrange(1, heigh)
+    colspan = randrange(1, width)
+
+    return g
 
 
 def join_horizontally(leftG, rightG):
@@ -21,7 +31,10 @@ def split_horizontally(g, columnsOnLeft):
         g1['rows'].append(r[:columnsOnLeft])
         g2['rows'].append(r[columnsOnLeft:])
 
-    return (g1, g2)
+    return (
+        {'rows': list(filter(bool, g1['rows']))},
+        {'rows': list(filter(bool, g2['rows']))}
+    )
 
 
 def split_vertically(g, rowsOnTop):
@@ -74,3 +87,10 @@ def cell():
         'colspan': 1,
         'color': 'white'
     }
+
+
+""" IO """
+
+
+if __name__ == '__main__':
+    print(mondrianize(grid(3, 3)))
