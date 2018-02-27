@@ -1,5 +1,10 @@
 import unittest
-from generate import cell, row, grid
+from generate import (
+    cell,
+    spanning_cell,
+    row,
+    grid
+)
 
 
 class TestCell(unittest.TestCase):
@@ -31,6 +36,14 @@ class TestGrid(unittest.TestCase):
             [cell(), cell(), cell()],
             [cell(), cell(), cell()]
         ])
+
+
+class TestSpanningCell(unittest.TestCase):
+    def test_assigns_the_colspan_rowspan_keeping_the_color_white(self):
+        c = spanning_cell(4, 5)
+        self.assertEqual(c['rowspan'], 4)
+        self.assertEqual(c['colspan'], 5)
+        self.assertEqual(c['color'], 'white')
 
 
 if __name__ == '__main__':
