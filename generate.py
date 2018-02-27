@@ -12,7 +12,7 @@ def colorize(g):
                 'white',
                 'white',
                 'white',
-                'white'
+                'white',
                 'green',
                 'yellow',
                 'red',
@@ -49,8 +49,7 @@ def mondrianize(g):
         if gRight['rows']:
             result = join_horizontally(result, mondrianize(gRight))
 
-        if gBottom['rows']:
-            result = join_vertically(result, mondrianize(gBottom))
+        result = join_vertically(result, mondrianize(gBottom))
     else:
         gLeft, gRight = split_horizontally(g, colspan)
         _, gBottom = split_vertically(gLeft, rowspan)
@@ -58,8 +57,7 @@ def mondrianize(g):
         if gBottom['rows']:
             result = join_vertically(result, mondrianize(gBottom))
 
-        if gRight['rows']:
-            result = join_horizontally(result, mondrianize(gRight))
+        result = join_horizontally(result, mondrianize(gRight))
 
     return result
 
@@ -202,5 +200,5 @@ def html_td(c):
 
 
 if __name__ == '__main__':
-    print(html(colorize(mondrianize(grid(4, 4))))
+    print(html(colorize(mondrianize(grid(8, 8))))
 )
