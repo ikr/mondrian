@@ -11,7 +11,9 @@ from generate import (
     join_vertically,
     join_horizontally,
     html_td,
-    html_tr
+    html_tr,
+    html_table,
+    html
 )
 
 
@@ -167,6 +169,20 @@ class TestHtml(unittest.TestCase):
         self.assertIn('<tr>', h)
         self.assertIn('</tr>', h)
         self.assertIn('<td ', h)
+
+    def test_html_table(self):
+        h = html_table(grid(2, 2))
+        self.assertIn('<table>', h)
+        self.assertIn('</table>', h)
+        self.assertIn('<tr>', h)
+        self.assertIn('</tr>', h)
+
+    def test_html(self):
+        h = html(grid(1, 1))
+        self.assertIn('<style>', h)
+        self.assertIn('</style>', h)
+        self.assertIn('<body>', h)
+        self.assertIn('</body>', h)
 
 
 if __name__ == '__main__':

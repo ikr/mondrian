@@ -94,6 +94,39 @@ def cell():
 ''' HTML '''
 
 
+def html(g):
+    return '\n'.join((
+        '<html>',
+        '<head>',
+        '<style>',
+        'table {',
+        'width: 100%;',
+        'height: 100%;',
+        'border-collapse: collapse;',
+        'border-spacing: 0;',
+        '}',
+        'td {',
+        'border: 12px solid;',
+        'padding: 0px;',
+        '}',
+        '</style>',
+        '</head>',
+        '<body>',
+        html_table(g),
+        '</body>',
+        '</html>'
+    ))
+
+
+
+def html_table(g):
+    return '\n'.join((
+        '<table>',
+        '\n'.join(map(html_tr, g['rows'])),
+        '</table>'
+    ))
+
+
 def html_tr(r):
     return ' '.join((
         '<tr>',
@@ -114,4 +147,4 @@ def html_td(c):
 
 
 if __name__ == '__main__':
-    print(mondrianize(grid(3, 3)))
+    print(html(grid(3, 3)))
