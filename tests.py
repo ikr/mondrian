@@ -60,6 +60,25 @@ class TestSpanTopLeft(unittest.TestCase):
         span_top_left(g, 1, 200)
         self.assertEqual(g['rows'][0], [spanning_cell(1, 3)])
 
+    def test_spanning_to_2_rows_removes_1_cell_from_2nd_row(self):
+        g = grid(3, 2)
+        span_top_left(g, 2, 1)
+        self.assertEqual(g['rows'][0], [spanning_cell(2, 1), cell()])
+        self.assertEqual(g['rows'][1], [cell()])
+        self.assertEqual(g['rows'][2], [cell(), cell()])
+
+    def test_removes_2_by_2_square_from_top_left(self):
+        g = grid(3, 3)
+        span_top_left(g, 2, 2)
+        self.assertEqual(g['rows'][0], [spanning_cell(2, 2), cell()])
+        self.assertEqual(g['rows'][1], [cell()])
+        self.assertEqual(g['rows'][2], [cell(), cell(), cell()])
+
+    def test_removing_huge_square_spans_the_whole_grid(self):
+        g = grid(2, 2)
+        span_top_left(g, 222, 222)
+        self.assertEqual(g['rows'][0], [spanning_cell(2, 2)])
+        self.assertEqual(g['rows'][1], [])
 
 
 if __name__ == '__main__':

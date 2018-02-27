@@ -2,10 +2,20 @@ from itertools import repeat, islice
 
 
 def span_top_left(g, rowspan, colspan):
-    top_row_length = len(g['rows'][0])
-    to_drop = min(top_row_length - 1, colspan - 1)
-    g['rows'][0] = g['rows'][0][:top_row_length - to_drop]
-    g['rows'][0][0]['colspan'] = min(top_row_length, colspan)
+    row_length = len(g['rows'][0])
+    to_drop_horz = min(row_length - 1, colspan - 1)
+    g['rows'][0] = g['rows'][0][:row_length - to_drop_horz]
+    g['rows'][0][0]['colspan'] = min(row_length, colspan)
+
+    g['rows'][0][0]['rowspan'] = min(len(g['rows']), rowspan)
+
+    i = 1
+    to_drop_vert = min(len(g['rows']) - 1, rowspan - 1)
+    while to_drop_vert > 0:
+        g['rows'][i] = g['rows'][i][:row_length - to_drop_horz - 1]
+        to_drop_vert -= 1
+        i += 1
+
     return g
 
 
