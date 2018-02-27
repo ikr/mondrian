@@ -2,14 +2,24 @@ from itertools import repeat, islice
 from random import randrange
 from copy import deepcopy
 
+
 def mondrianize(g):
     height = len(g['rows'])
     width = len(g['rows'][0])
 
-    rowspan = randrange(1, height)
-    colspan = randrange(1, width)
+    rowspan = randrange(1, height + 1)
+    colspan = randrange(1, width + 1)
 
     gPrime = span_top_left(g, rowspan, colspan)
+
+    if rowspan == height and colspan == width:
+        return gPrime
+
+    coinToss = randrange(0, 2)
+    splitVertically = (
+        (rowspan < height and colspan < width and coinToss == 0) or
+        (colspan == width)
+    )
 
     return gPrime
 
