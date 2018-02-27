@@ -200,5 +200,9 @@ def html_td(c):
 
 
 if __name__ == '__main__':
-    print(html(colorize(mondrianize(grid(8, 8))))
-)
+    m = mondrianize(grid(5, 5))
+
+    while len(m['rows']) < 8:
+        m['rows'].append([])
+
+    print(html(colorize(m)))
