@@ -96,12 +96,14 @@ def cell():
 
 def html(g):
     return '\n'.join((
+        '<!DOCTYPE html>'
         '<html>',
         '<head>',
         '<style>',
         'table {',
-        'width: 100%;',
-        'height: 100%;',
+        'width: 500px;',
+        'height: 500px;',
+        'table-layout: fixed;',
         'border-collapse: collapse;',
         'border-spacing: 0;',
         '}',
@@ -147,4 +149,4 @@ def html_td(c):
 
 
 if __name__ == '__main__':
-    print(html(grid(3, 3)))
+    print(html(mondrianize(grid(3, 3))))
