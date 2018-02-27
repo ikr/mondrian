@@ -5,10 +5,12 @@ def mondrianize(g):
     height = len(g['rows'])
     width = len(g['rows'][0])
 
-    rowspan = randrange(1, heigh)
+    rowspan = randrange(1, height)
     colspan = randrange(1, width)
 
-    return g
+    gPrime = span_top_left(g, rowspan, colspan)
+
+    return gPrime
 
 
 def join_horizontally(leftG, rightG):
@@ -89,7 +91,26 @@ def cell():
     }
 
 
-""" IO """
+''' HTML '''
+
+
+def html_tr(r):
+    return ' '.join((
+        '<tr>',
+        ' '.join(map(html_td, r)),
+        '</tr>'
+    ))
+
+
+def html_td(c):
+    return '<td rowspan="{}" colspan="{}" style="background-color: {}"/>'.format(
+        c['rowspan'],
+        c['colspan'],
+        c['color']
+    )
+
+
+''' IO '''
 
 
 if __name__ == '__main__':

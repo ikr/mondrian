@@ -9,7 +9,9 @@ from generate import (
     split_vertically,
     split_horizontally,
     join_vertically,
-    join_horizontally
+    join_horizontally,
+    html_td,
+    html_tr
 )
 
 
@@ -151,6 +153,20 @@ class TestJoinHorizontally(unittest.TestCase):
         g = grid(2, 3)
         g1, g2 = split_horizontally(g, 1)
         self.assertEqual(join_horizontally(g1, g2), g)
+
+
+class TestHtml(unittest.TestCase):
+    def test_html_td(self):
+        self.assertEqual(
+            html_td({'rowspan': 2, 'colspan': 3, 'color': 'blue'}),
+            '<td rowspan="2" colspan="3" style="background-color: blue"/>'
+        )
+
+    def test_html_tr(self):
+        h = html_tr(row(3))
+        self.assertIn('<tr>', h)
+        self.assertIn('</tr>', h)
+        self.assertIn('<td ', h)
 
 
 if __name__ == '__main__':
