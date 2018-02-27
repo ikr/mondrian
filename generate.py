@@ -21,7 +21,7 @@ def mondrianize(g):
         (colspan == width)
     )
 
-    result = {'rows': [gPrime['rows'][0][0]]}
+    result = {'rows': [[gPrime['rows'][0][0]]]}
 
     if splitVerticallyFirst:
         gTop, gBottom = split_vertically(g, rowspan)
@@ -183,4 +183,4 @@ def html_td(c):
 
 
 if __name__ == '__main__':
-    print(html(mondrianize(grid(3, 3))))
+    print(html(mondrianize(grid(32, 32))))
