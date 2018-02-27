@@ -1,6 +1,13 @@
 from itertools import repeat, islice
 
 
+def split_vertically(g, rowsOnTop):
+    return (
+        {'rows': g['rows'][:rowsOnTop]},
+        {'rows': g['rows'][rowsOnTop:]}
+    )
+
+
 def span_top_left(g, rowspan, colspan):
     if len(g['rows']) <= 0:
         return g

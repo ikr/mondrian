@@ -5,7 +5,8 @@ from generate import (
     spanning_cell,
     row,
     grid,
-    span_top_left
+    span_top_left,
+    split_vertically
 )
 
 
@@ -99,6 +100,27 @@ class TestSpanTopLeft(unittest.TestCase):
         span_top_left(g, 1, 1)
         self.assertEqual(g['rows'][0], [cell(), cell()])
         self.assertEqual(g['rows'][1], [cell(), cell()])
+
+
+class TestSplitVertically(unittest.TestCase):
+    def test_rows_split_in_the_middle(self):
+        g = grid(2, 2)
+        g1, g2 = split_vertically(g, 1)
+        self.assertEqual(g1['rows'], [[cell(), cell()]])
+        self.assertEqual(g2['rows'], [[cell(), cell()]])
+
+    def test_rows_split_on_top(self):
+        g = grid(2, 2)
+        g1, g2 = split_vertically(g, 0)
+        self.assertEqual(g1['rows'], [])
+        self.assertEqual(g2['rows'], [[cell(), cell()], [cell(), cell()]])
+
+    def test_rows_split_in_the_bottom(self):
+        g = grid(2, 2)
+        g1, g2 = split_vertically(g, 2)
+        self.assertEqual(g1['rows'], [[cell(), cell()], [cell(), cell()]])
+        self.assertEqual(g2['rows'], [])
+
 
 
 if __name__ == '__main__':
