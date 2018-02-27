@@ -1,6 +1,18 @@
 from itertools import repeat, islice
 
 
+def join_horizontally(leftG, rightG):
+    return {
+        'rows': list(
+            map(lambda t: t[0] + t[1], zip(leftG['rows'], rightG['rows']))
+        )
+    }
+
+
+def join_vertically(topG, bottomG):
+    return {'rows': topG['rows'] + bottomG['rows']}
+
+
 def split_horizontally(g, columnsOnLeft):
     g1 = {'rows': []}
     g2 = {'rows': []}

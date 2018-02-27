@@ -7,7 +7,9 @@ from generate import (
     grid,
     span_top_left,
     split_vertically,
-    split_horizontally
+    split_horizontally,
+    join_vertically,
+    join_horizontally
 )
 
 
@@ -129,6 +131,20 @@ class TestSplitHorizontally(unittest.TestCase):
         g1, g2 = split_horizontally(g, 1)
         self.assertEqual(g1['rows'], [[cell()], [cell()], [cell()]])
         self.assertEqual(g2['rows'], [[cell(), cell()], [cell(), cell()], [cell(), cell()]])
+
+
+class TestJoinVertically(unittest.TestCase):
+    def test_jouns_a_split_back(self):
+        g = grid(2, 2)
+        g1, g2 = split_vertically(g, 1)
+        self.assertEqual(join_vertically(g1, g2), g)
+
+
+class TestJoinHorizontally(unittest.TestCase):
+    def test_jouns_a_split_back(self):
+        g = grid(2, 3)
+        g1, g2 = split_horizontally(g, 1)
+        self.assertEqual(join_horizontally(g1, g2), g)
 
 
 if __name__ == '__main__':
