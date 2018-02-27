@@ -1,9 +1,11 @@
 import unittest
+
 from generate import (
     cell,
     spanning_cell,
     row,
-    grid
+    grid,
+    span_top_left
 )
 
 
@@ -44,6 +46,20 @@ class TestSpanningCell(unittest.TestCase):
         self.assertEqual(c['rowspan'], 4)
         self.assertEqual(c['colspan'], 5)
         self.assertEqual(c['color'], 'white')
+
+
+class TestSpanTopLeft(unittest.TestCase):
+    def test_spanning_to_2_columns_removes_1_cell_from_top_row(self):
+        g = grid(2, 3)
+        span_top_left(g, 1, 2)
+        self.assertEqual(g['rows'][0], [spanning_cell(1, 2), cell()])
+        self.assertEqual(g['rows'][1], [cell(), cell(), cell()])
+
+    def test_spanning_to_too_many_columns_results_in_1_cell_with_max_colspan(self):
+        g = grid(2, 3)
+        span_top_left(g, 1, 200)
+        self.assertEqual(g['rows'][0], [spanning_cell(1, 3)])
+
 
 
 if __name__ == '__main__':
