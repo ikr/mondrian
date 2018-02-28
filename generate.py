@@ -13,7 +13,10 @@ def colorize(g):
                 'white',
                 'white',
                 'white',
-                'green',
+                'white',
+                'white',
+                'gray',
+                'black',
                 'yellow',
                 'red',
                 'blue'
@@ -58,6 +61,9 @@ def mondrianize(g):
             result = join_vertically(result, mondrianize(gBottom))
 
         result = join_horizontally(result, mondrianize(gRight))
+
+    while len(result['rows']) < len(g['rows']):
+        result['rows'].append([])
 
     return result
 
@@ -200,9 +206,4 @@ def html_td(c):
 
 
 if __name__ == '__main__':
-    m = mondrianize(grid(5, 5))
-
-    while len(m['rows']) < 8:
-        m['rows'].append([])
-
-    print(html(colorize(m)))
+    print(html(colorize(mondrianize(grid(4, 4)))))
